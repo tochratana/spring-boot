@@ -1,0 +1,24 @@
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore build and distribution directories
+build/
+dist/
+*.egg-info/
+
+# Ignore local configuration files
+.env
+*.env
+
+# Ignore log files
+*.log
+logs/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
