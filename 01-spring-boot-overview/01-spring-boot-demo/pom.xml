@@ -8,10 +8,12 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<!--Like address-->
 	<groupId>com.luv2code.spring.demo</groupId>
 	<artifactId>01-spring-boot-overview</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>01-spring-boot-overview</name>
+
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

@@ -9,7 +9,7 @@ public class FunRestController {
     // expose "/" that return "Hello World"
     @GetMapping
     public String sayHello(){
-        return "Hello World";
+        return "Hello World, this is my code, this project you can implement some of configuration!";
     }
 
 }
