@@ -1,0 +1,37 @@
+package com.rml.springcoredemo.rest;
+
+import com.rml.springcoredemo.common.Coach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+
+    private final Coach coach;
+    // defined private for the dependency
+    private Coach mycoach;
+    private Coach anotherCoach;
+
+    @Autowired
+    public DemoController(
+            @Qualifier("baseballCoach") Coach theCoach,
+            @Qualifier("baseballCoach") Coach theAnotherCoach,
+            Coach coach){
+        System.out.println("Instructor : " + getClass().getName());
+        mycoach = theCoach;
+        anotherCoach = theAnotherCoach;
+        this.coach = coach;
+    }
+
+    @GetMapping("/dailyworkout")
+    public String getDailyWorkout(){
+        return mycoach.getDailyWorkOut();
+    }
+
+    @GetMapping("/check")
+    public String check(){
+        return "Comparing beans scopes : " + (coach == anotherCoach);
+    }
+}
