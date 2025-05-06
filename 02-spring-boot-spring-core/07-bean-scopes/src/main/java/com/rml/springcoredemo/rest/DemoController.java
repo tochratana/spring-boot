@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class DemoController {
-
-    private final Coach coach;
     // defined private for the dependency
     private Coach mycoach;
     private Coach anotherCoach;
@@ -17,12 +15,10 @@ public class DemoController {
     @Autowired
     public DemoController(
             @Qualifier("baseballCoach") Coach theCoach,
-            @Qualifier("baseballCoach") Coach theAnotherCoach,
-            Coach coach){
+            @Qualifier("baseballCoach") Coach theAnotherCoach){
         System.out.println("Instructor : " + getClass().getName());
         mycoach = theCoach;
         anotherCoach = theAnotherCoach;
-        this.coach = coach;
     }
 
     @GetMapping("/dailyworkout")
@@ -32,6 +28,6 @@ public class DemoController {
 
     @GetMapping("/check")
     public String check(){
-        return "Comparing beans scopes : " + (coach == anotherCoach);
+        return "Comparing beans scopes : " + (mycoach == anotherCoach);
     }
 }
