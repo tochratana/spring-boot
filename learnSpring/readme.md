@@ -22,3 +22,6 @@ loosely coupled : can be alone
 
 - Repository vs Dao
 - Structure for spring weh mvc
+- Structure by layer
+- structure by feature
+- spring can convert from object to json `serialization <=> diserializaiton`
