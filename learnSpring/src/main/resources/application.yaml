@@ -1,8 +1,21 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: tochratana
+    password: 1234
+    driver-class-name: org.postgresql.Driver
   application:
     name: learnSpring
   profiles:
     active: prod
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
 #server:
 #  port: 8080
 
