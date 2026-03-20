@@ -1,6 +1,9 @@
 package com.tochratana.learnSpring.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,9 +17,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
+
 public class Product {
     @Id
-    private Integer code;
+    private String code;
 
     @Column(nullable = false)
     private String name;

@@ -3,7 +3,13 @@ package com.tochratana.learnSpring.controller;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
 import com.tochratana.learnSpring.dto.UpdateProduct;
+import com.tochratana.learnSpring.service.ProductService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,13 +17,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/products")
 @Slf4j
+@RequiredArgsConstructor
 public class ProductController {
+
+    private final ProductService productService;
 
 
     @GetMapping
-    public List<ProductResponse> getAllProducts(){
-        log.info("Get All Product : ");
-        return List.of();
+    public Page<ProductResponse> getAllProducts(
+            @RequestParam(required = false, defaultValue = "0") int pageNumber,
+            @RequestParam(required = false, defaultValue = "25") int pageSize
+    ){
+
+        return productService.getAllProduct(pageNumber, pageSize);
     }
 
     @GetMapping("/{code}")
@@ -29,11 +41,12 @@ public class ProductController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse createNewProduct(
-            @RequestBody RequestProduct requestProduct
+            @Valid @RequestBody RequestProduct requestProduct
     ){
         log.info("Product that have create : {}", requestProduct);
-        return null;
+        return productService.createNew(requestProduct);
     }
 
     @PutMapping("/{code}")
@@ -55,7 +68,9 @@ public class ProductController {
     }
 
     @DeleteMapping("{code}")
-    public void deleteProductByCode(@PathVariable String code){
+    public String deleteProductByCode(@PathVariable String code){
+        productService.deleteProductByCode(code);
         log.info("Delete Product : {}", code );
+        return code;
     }
 }
