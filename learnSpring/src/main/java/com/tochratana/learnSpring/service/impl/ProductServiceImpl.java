@@ -33,6 +33,8 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
 
 
+
+        // 2. Insert Product to database
         Product product = new Product();
         product.setName(requestProduct.name());
 
@@ -52,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
         product = productRepository.save(product);
 
 
+        // 3. Map product to product response
         return ProductResponse.builder()
                 .code(product.getCode())
                 .name(product.getName())
