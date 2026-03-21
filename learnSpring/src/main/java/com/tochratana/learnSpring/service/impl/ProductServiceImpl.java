@@ -77,7 +77,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public String deleteProductByCode(String code) {
-        // 1. Validation
+        // 1. Validation if code don't have
+        productRepository.findById(code).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Code Not Found"));
         productRepository.deleteById(code);
         return code;
     }

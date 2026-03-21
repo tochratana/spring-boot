@@ -69,8 +69,6 @@ public class ProductController {
 
     @DeleteMapping("{code}")
     public String deleteProductByCode(@PathVariable String code){
-        productService.deleteProductByCode(code);
-        log.info("Delete Product : {}", code );
-        return code;
+        return productService.deleteProductByCode(code);
     }
 }
