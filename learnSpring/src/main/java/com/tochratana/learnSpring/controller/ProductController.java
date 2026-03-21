@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +22,12 @@ public class ProductController {
     private final ProductService productService;
 
 
+    /**
+     *
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @GetMapping
     public Page<ProductResponse> getAllProducts(
             @RequestParam(required = false, defaultValue = "0") int pageNumber,
@@ -36,8 +41,9 @@ public class ProductController {
     public ProductResponse getProductByCode(
             @PathVariable String code
     ){
+
         log.info("Get this product code : {}", code);
-        return null;
+        return  productService.getProductByCode(code);
     }
 
     @PostMapping
