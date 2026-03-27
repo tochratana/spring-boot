@@ -2,6 +2,7 @@ package com.tochratana.learnSpring.service.impl;
 
 import com.tochratana.learnSpring.domain.Category;
 import com.tochratana.learnSpring.domain.Product;
+import com.tochratana.learnSpring.dto.PatchProductRequest;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
 import com.tochratana.learnSpring.dto.UpdateProductRequest;
@@ -27,6 +28,29 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductMapper productMapper;
 
+
+    @Override
+    public ProductResponse patchByCode(String code, PatchProductRequest patchProductRequest) {
+
+        // validate productCode and Category
+        Product product = productRepository.findById(code).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Code Not Found"));
+
+
+
+        Category category = product.getCategory();
+        if( patchProductRequest.categoryId() != null ){
+            category = categoryRepository.findById(patchProductRequest.categoryId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
+        }
+        product.setCategory(category);
+        productMapper.toPatchProductRequest(patchProductRequest, product);
+
+        product = productRepository.save(product);
+
+
+        return productMapper.toProductResponse(product);
+    }
 
     @Override
     public ProductResponse createNew(RequestProduct requestProduct) {

@@ -1,5 +1,6 @@
 package com.tochratana.learnSpring.controller;
 
+import com.tochratana.learnSpring.dto.PatchProductRequest;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
 import com.tochratana.learnSpring.dto.UpdateProductRequest;
@@ -22,12 +23,6 @@ public class ProductController {
     private final ProductService productService;
 
 
-    /**
-     *
-     * @param pageNumber
-     * @param pageSize
-     * @return
-     */
     @GetMapping
     public Page<ProductResponse> getAllProducts(
             @RequestParam(required = false, defaultValue = "0") int pageNumber,
@@ -69,10 +64,10 @@ public class ProductController {
     @PatchMapping("/{code}")
     public ProductResponse patchProduct(
             @PathVariable String code,
-            @RequestBody UpdateProductRequest updateProduct
+            @RequestBody PatchProductRequest patchProductRequest
     ){
-        log.info("Patch Product : {}", updateProduct);
-        return null;
+
+        return productService.patchByCode(code, patchProductRequest);
     }
 
     @DeleteMapping("{code}")

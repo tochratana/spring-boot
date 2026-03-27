@@ -1,11 +1,10 @@
 package com.tochratana.learnSpring.mapper;
 
 import com.tochratana.learnSpring.domain.Product;
+import com.tochratana.learnSpring.dto.PatchProductRequest;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.UpdateProductRequest;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
@@ -36,6 +35,7 @@ public interface ProductMapper {
     ProductResponse toProductResponse(Product product);
     void toUpdateProductRequest(UpdateProductRequest updateProductRequest, @MappingTarget Product product);
 
-
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void toPatchProductRequest(PatchProductRequest patchProductRequest, @MappingTarget Product product);
 
 }

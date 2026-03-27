@@ -1,5 +1,6 @@
 package com.tochratana.learnSpring.service;
 
+import com.tochratana.learnSpring.dto.PatchProductRequest;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
 import com.tochratana.learnSpring.dto.UpdateProductRequest;
@@ -12,4 +13,5 @@ public interface ProductService {
     String deleteProductByCode(String code);
     ProductResponse getProductByCode(String code);
     ProductResponse updateProductByCode(String code, UpdateProductRequest updateProductRequest);
+    ProductResponse patchByCode(String code, PatchProductRequest patchProductRequest);
 }
