@@ -2,7 +2,6 @@ package com.tochratana.learnSpring.controller;
 
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
-import com.tochratana.learnSpring.dto.UpdateProduct;
 import com.tochratana.learnSpring.dto.UpdateProductRequest;
 import com.tochratana.learnSpring.service.ProductService;
 import jakarta.validation.Valid;
@@ -70,7 +69,7 @@ public class ProductController {
     @PatchMapping("/{code}")
     public ProductResponse patchProduct(
             @PathVariable String code,
-            @RequestBody UpdateProduct updateProduct
+            @RequestBody UpdateProductRequest updateProduct
     ){
         log.info("Patch Product : {}", updateProduct);
         return null;

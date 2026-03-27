@@ -10,6 +10,6 @@ public record ProductResponse(
         Integer qty,
         String description,
         Boolean isAvailable,
-        String categoryName
+        String category
 ) {
 }

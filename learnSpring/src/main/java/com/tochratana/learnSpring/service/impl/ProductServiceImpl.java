@@ -25,18 +25,19 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 
+    private final ProductMapper productMapper;
+
 
     @Override
     public ProductResponse createNew(RequestProduct requestProduct) {
         // TODO: write your business logic
-
-        // 1. Validate Category ID (exists or not)
+        // 1. Validate category ID (exists or not)
         Category category = categoryRepository.findById(requestProduct.categoryID())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
 
 
 
-        // 2. Insert Product to database
+        // 2. Transfer data from DTO to Entity
         Product product = new Product();
         product.setName(requestProduct.name());
 
@@ -47,16 +48,16 @@ public class ProductServiceImpl implements ProductService {
         product.setCategory(category);
 
 
-
+        // 3. System data
         product.setIsAvailable(true);
         product.setCode("ISTAD-" + UUID.randomUUID().toString());
 
 
-
+        // 4. Save into database
         product = productRepository.save(product);
 
 
-        // 3. Map product to product response
+        // 5. Transfer data from Entity to DTO
         return ProductResponse.builder()
                 .code(product.getCode())
                 .name(product.getName())
@@ -64,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
                 .qty(product.getQty())
                 .description(product.getDescription())
                 .isAvailable(product.getIsAvailable())
-                .categoryName(product.getCategory().getName())
+                .category(product.getCategory().getName())
                 .build();
     }
 
@@ -74,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         return productRepository.findAll(pageable)
-                .map(ProductMapper::toProductResponse);
+                .map(productMapper::toProductResponse);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class ProductServiceImpl implements ProductService {
         // 1. validation if code don't have
         Product product = productRepository.findById(code).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Code Not Found"));
-        return ProductMapper.toProductResponse(product);
+        return productMapper.toProductResponse(product);
     }
 
     @Override
@@ -100,11 +101,11 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.findById(code).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Code Not Found"));
 
-//        product.setCode(updateProductRequest.name());
+        //product.setCode(updateProductRequest.name());
 
-        ProductMapper.toUpdateProductRequest(updateProductRequest, product);
+        productMapper.toUpdateProductRequest(updateProductRequest, product);
         product = productRepository.save(product);
 
-        return ProductMapper.toProductResponse(product);
+        return productMapper.toProductResponse(product);
     }
 }
