@@ -2,6 +2,7 @@ package com.tochratana.learnSpring.service;
 
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
+import com.tochratana.learnSpring.dto.UpdateProductRequest;
 import org.springframework.data.domain.Page;
 
 
@@ -10,4 +11,5 @@ public interface ProductService {
     Page<ProductResponse> getAllProduct(int pageNumber, int pageSize);
     String deleteProductByCode(String code);
     ProductResponse getProductByCode(String code);
+    ProductResponse updateProductByCode(String code, UpdateProductRequest updateProductRequest);
 }

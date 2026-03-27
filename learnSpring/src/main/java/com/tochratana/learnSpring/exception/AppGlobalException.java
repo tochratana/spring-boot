@@ -35,7 +35,6 @@ public class AppGlobalException {
     }
 
 
-    //
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse handleValidation(MethodArgumentNotValidException e) {

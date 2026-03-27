@@ -4,6 +4,7 @@ import com.tochratana.learnSpring.domain.Category;
 import com.tochratana.learnSpring.domain.Product;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
+import com.tochratana.learnSpring.dto.UpdateProductRequest;
 import com.tochratana.learnSpring.mapper.ProductMapper;
 import com.tochratana.learnSpring.repository.CategoryRepository;
 import com.tochratana.learnSpring.repository.ProductRepository;
@@ -23,6 +24,7 @@ import java.util.UUID;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+
 
     @Override
     public ProductResponse createNew(RequestProduct requestProduct) {
@@ -89,6 +91,20 @@ public class ProductServiceImpl implements ProductService {
         // 1. validation if code don't have
         Product product = productRepository.findById(code).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Code Not Found"));
+        return ProductMapper.toProductResponse(product);
+    }
+
+    @Override
+    public ProductResponse updateProductByCode(String code, UpdateProductRequest updateProductRequest) {
+        // TODO: validate product code
+        Product product = productRepository.findById(code).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Code Not Found"));
+
+//        product.setCode(updateProductRequest.name());
+
+        ProductMapper.toUpdateProductRequest(updateProductRequest, product);
+        product = productRepository.save(product);
+
         return ProductMapper.toProductResponse(product);
     }
 }

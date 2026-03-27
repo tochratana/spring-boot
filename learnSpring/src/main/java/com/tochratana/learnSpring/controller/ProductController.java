@@ -3,6 +3,7 @@ package com.tochratana.learnSpring.controller;
 import com.tochratana.learnSpring.dto.ProductResponse;
 import com.tochratana.learnSpring.dto.RequestProduct;
 import com.tochratana.learnSpring.dto.UpdateProduct;
+import com.tochratana.learnSpring.dto.UpdateProductRequest;
 import com.tochratana.learnSpring.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -55,13 +56,15 @@ public class ProductController {
         return productService.createNew(requestProduct);
     }
 
+
+    // must be input all
     @PutMapping("/{code}")
     public ProductResponse updateProduct(
             @PathVariable String code,
-            @RequestBody UpdateProduct updateProduct
+            @RequestBody UpdateProductRequest updateProduct
     ){
         log.info("Update product : {}", updateProduct);
-        return null;
+        return productService.updateProductByCode(code, updateProduct);
     }
 
     @PatchMapping("/{code}")
