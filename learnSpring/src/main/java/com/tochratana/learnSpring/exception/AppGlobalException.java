@@ -1,7 +1,9 @@
 package com.tochratana.learnSpring.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -12,6 +14,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestControllerAdvice
 public class AppGlobalException {
 
@@ -22,14 +25,17 @@ public class AppGlobalException {
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .status(e.getStatusCode().toString())
                 .code(e.getStatusCode().value())
-                .message(e.getReason())
+                .message("Service Logic Error")
                 .timestamp(Instant.now())
+                .errorsDetails(e.getReason())
                 .build();
 
         return new ResponseEntity<>(errorResponse, e.getStatusCode());
 
     }
 
+
+    //
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse handleValidation(MethodArgumentNotValidException e) {
@@ -37,7 +43,8 @@ public class AppGlobalException {
         List<FieldResponse> fieldResponses = new ArrayList<>();
 
         e.getBindingResult().getFieldErrors().forEach(error -> {
-            FieldResponse fieldResponse = FieldResponse.builder()
+            FieldResponse fieldResponse = FieldResponse
+                    .builder()
                     .field(error.getField())
                     .message(error.getDefaultMessage())
                     .build();
@@ -48,9 +55,9 @@ public class AppGlobalException {
         return ErrorResponse.builder()
                 .status(HttpStatus.BAD_REQUEST.toString())
                 .code(HttpStatus.BAD_REQUEST.value())
-                .message("Validation failed")
+                .message("Request data is invalid")
                 .timestamp(Instant.now())
-                .errors(fieldResponses)
+                .errorsDetails(fieldResponses)
                 .build();
     }
 }
