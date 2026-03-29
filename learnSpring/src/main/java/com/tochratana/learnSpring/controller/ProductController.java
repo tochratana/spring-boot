@@ -64,7 +64,7 @@ public class ProductController {
     @PatchMapping("/{code}")
     public ProductResponse patchProduct(
             @PathVariable String code,
-            @RequestBody PatchProductRequest patchProductRequest
+            @Valid @RequestBody PatchProductRequest patchProductRequest
     ){
 
         return productService.patchByCode(code, patchProductRequest);
