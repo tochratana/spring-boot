@@ -1,4 +1,4 @@
-package com.tochratana.learnSpring.dto;
+package com.tochratana.learnSpring.feature.product.dto;
 
 import lombok.Builder;
 

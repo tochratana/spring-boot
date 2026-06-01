@@ -1,18 +1,16 @@
-package com.tochratana.learnSpring.controller;
+package com.tochratana.learnSpring.feature.product.controller;
 
-import com.tochratana.learnSpring.dto.PatchProductRequest;
-import com.tochratana.learnSpring.dto.ProductResponse;
-import com.tochratana.learnSpring.dto.RequestProduct;
-import com.tochratana.learnSpring.dto.UpdateProductRequest;
-import com.tochratana.learnSpring.service.ProductService;
+import com.tochratana.learnSpring.feature.product.dto.PatchProductRequest;
+import com.tochratana.learnSpring.feature.product.dto.ProductResponse;
+import com.tochratana.learnSpring.feature.product.dto.RequestProduct;
+import com.tochratana.learnSpring.feature.product.dto.UpdateProductRequest;
+import com.tochratana.learnSpring.feature.product.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")

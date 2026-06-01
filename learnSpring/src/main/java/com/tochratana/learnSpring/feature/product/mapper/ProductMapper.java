@@ -1,9 +1,9 @@
-package com.tochratana.learnSpring.mapper;
+package com.tochratana.learnSpring.feature.product.mapper;
 
-import com.tochratana.learnSpring.domain.Product;
-import com.tochratana.learnSpring.dto.PatchProductRequest;
-import com.tochratana.learnSpring.dto.ProductResponse;
-import com.tochratana.learnSpring.dto.UpdateProductRequest;
+import com.tochratana.learnSpring.feature.product.Product;
+import com.tochratana.learnSpring.feature.product.dto.PatchProductRequest;
+import com.tochratana.learnSpring.feature.product.dto.ProductResponse;
+import com.tochratana.learnSpring.feature.product.dto.UpdateProductRequest;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")

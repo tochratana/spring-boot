@@ -1,15 +1,15 @@
-package com.tochratana.learnSpring.service.impl;
+package com.tochratana.learnSpring.feature.product.service.impl;
 
-import com.tochratana.learnSpring.domain.Category;
-import com.tochratana.learnSpring.domain.Product;
-import com.tochratana.learnSpring.dto.PatchProductRequest;
-import com.tochratana.learnSpring.dto.ProductResponse;
-import com.tochratana.learnSpring.dto.RequestProduct;
-import com.tochratana.learnSpring.dto.UpdateProductRequest;
-import com.tochratana.learnSpring.mapper.ProductMapper;
-import com.tochratana.learnSpring.repository.CategoryRepository;
-import com.tochratana.learnSpring.repository.ProductRepository;
-import com.tochratana.learnSpring.service.ProductService;
+import com.tochratana.learnSpring.feature.category.Category;
+import com.tochratana.learnSpring.feature.product.Product;
+import com.tochratana.learnSpring.feature.product.dto.PatchProductRequest;
+import com.tochratana.learnSpring.feature.product.dto.ProductResponse;
+import com.tochratana.learnSpring.feature.product.dto.RequestProduct;
+import com.tochratana.learnSpring.feature.product.dto.UpdateProductRequest;
+import com.tochratana.learnSpring.feature.product.mapper.ProductMapper;
+import com.tochratana.learnSpring.feature.category.CategoryRepository;
+import com.tochratana.learnSpring.feature.product.ProductRepository;
+import com.tochratana.learnSpring.feature.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,5 +1,6 @@
-package com.tochratana.learnSpring.domain;
+package com.tochratana.learnSpring.feature.category;
 
+import com.tochratana.learnSpring.feature.product.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

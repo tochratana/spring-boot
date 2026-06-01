@@ -4,10 +4,15 @@ spring:
     username: tochratana
     password: 1234
     driver-class-name: org.postgresql.Driver
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/istad-outh2
   application:
-    name: learnSpring
+    name: advanced-ecommerce-api
   profiles:
-    active: prod
+    active: dev
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,5 +22,5 @@ spring:
         format_sql: true
 
 #server:
-#  port: 8080
+#  port: 9090
 

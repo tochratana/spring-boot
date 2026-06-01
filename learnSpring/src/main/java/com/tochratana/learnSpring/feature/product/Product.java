@@ -1,9 +1,8 @@
-package com.tochratana.learnSpring.domain;
+package com.tochratana.learnSpring.feature.product;
 
+import com.tochratana.learnSpring.feature.category.Category;
+import com.tochratana.learnSpring.feature.order.OrderLine;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

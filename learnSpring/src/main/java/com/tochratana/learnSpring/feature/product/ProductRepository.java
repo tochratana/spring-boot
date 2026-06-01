@@ -1,6 +1,5 @@
-package com.tochratana.learnSpring.repository;
+package com.tochratana.learnSpring.feature.product;
 
-import com.tochratana.learnSpring.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

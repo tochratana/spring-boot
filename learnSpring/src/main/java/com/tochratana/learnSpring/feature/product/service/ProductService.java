@@ -1,9 +1,9 @@
-package com.tochratana.learnSpring.service;
+package com.tochratana.learnSpring.feature.product.service;
 
-import com.tochratana.learnSpring.dto.PatchProductRequest;
-import com.tochratana.learnSpring.dto.ProductResponse;
-import com.tochratana.learnSpring.dto.RequestProduct;
-import com.tochratana.learnSpring.dto.UpdateProductRequest;
+import com.tochratana.learnSpring.feature.product.dto.PatchProductRequest;
+import com.tochratana.learnSpring.feature.product.dto.ProductResponse;
+import com.tochratana.learnSpring.feature.product.dto.RequestProduct;
+import com.tochratana.learnSpring.feature.product.dto.UpdateProductRequest;
 import org.springframework.data.domain.Page;
 
 

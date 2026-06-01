@@ -1,4 +1,4 @@
-package com.tochratana.learnSpring.domain;
+package com.tochratana.learnSpring.feature.order;
 
 import jakarta.persistence.*;
 import lombok.Getter;
