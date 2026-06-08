@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -28,5 +29,11 @@ public class Order {
 
     @Column(nullable = false)
     private Boolean isDeleted;
+
+    @Column(length = 150)
+    private String remark;
+
+    @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
+    private List<OrderLine> orderLine;
 
 }
