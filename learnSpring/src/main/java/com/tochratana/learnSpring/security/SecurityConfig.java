@@ -36,9 +36,9 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(
                 endpoint ->
                         endpoint
-//                                .requestMatchers("/api/v1/products/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/api/v1/products/**").permitAll() // for permitAll() is like public
 
-                                .anyRequest().authenticated() // for permitAll() is like public
+                                .anyRequest().authenticated()
 
         );
 
