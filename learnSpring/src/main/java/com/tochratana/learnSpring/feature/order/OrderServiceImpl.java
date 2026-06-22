@@ -7,6 +7,7 @@ import com.tochratana.learnSpring.feature.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,7 +23,7 @@ public class OrderServiceImpl implements OrderService{
     private final ProductRepository productRepository;
     private final OrderMapper orderMapper;
     @Override
-    public OrderResponse createOrder(CreateOrderRequest createOrderRequest) {
+    public OrderResponse createOrder(CreateOrderRequest createOrderRequest, Jwt jwt) {
         List<OrderLine> orderLines = new ArrayList<>();
         final Order order = orderMapper.mapCreateOrderRequestToOrder(createOrderRequest);
 
@@ -51,8 +52,8 @@ public class OrderServiceImpl implements OrderService{
         // System data generation
         order.setOrderedAt(Instant.now());
         order.setIsDeleted(false);
-        order.setOrderedBy("ADMIN");
-        order.setOrderLine(orderLines);
+        order.setOrderedBy(jwt.getSubject());
+        order.setOrderLines(orderLines);
 
         Order savedOrder = orderRepository.save(order);
 

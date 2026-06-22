@@ -35,6 +35,15 @@ public class SecurityConfig {
                         endpoint
                                 .requestMatchers(HttpMethod.GET, "/api/v1/products/**").permitAll() // for permitAll() is like public
                                 .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/v1/products").permitAll()
+                                .requestMatchers(
+                                        "/swagger-ui/**",
+                                        "/v3/api-docs",
+                                        "/v3/api-docs/",
+                                        "/v3/api-docs/swagger-config",
+                                        "/scalar",
+                                        "/scalar/**"
+                                ).permitAll()
 
                                 .anyRequest().authenticated()
 

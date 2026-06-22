@@ -34,6 +34,6 @@ public class Order {
     private String remark;
 
     @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL)
-    private List<OrderLine> orderLine;
+    private List<OrderLine> orderLines;
 
 }

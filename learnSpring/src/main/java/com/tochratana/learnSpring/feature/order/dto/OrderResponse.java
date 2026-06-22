@@ -12,6 +12,6 @@ public record OrderResponse(
         String orderedBy,
         Boolean isDeleted,
         String remark,
-        List<OrderLine> orderLine
+        List<OrderLineDto> orderLines
 ) {
 }
