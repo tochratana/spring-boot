@@ -21,6 +21,8 @@ spring:
       hibernate:
         format_sql: true
 
+file-upload:
+  server-path: /Users/tochratana/Microservice/fileUpload/
 #server:
 #  port: 9090
 
